@@ -1,4 +1,4 @@
-# Church Election App
+# Church Election
 
 I build this app for my local church's leadership elections.
 
