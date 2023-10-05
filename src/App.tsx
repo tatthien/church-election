@@ -33,6 +33,7 @@ function App() {
             <form onSubmit={handleAddCandidate}>
               <TextInput
                 size="md"
+                radius="xs"
                 placeholder="Nhập họ tên và nhấn Enter"
                 fw={600}
                 leftSection={<IconUser />}
