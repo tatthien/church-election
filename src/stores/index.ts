@@ -2,6 +2,8 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Candidate } from "@/types";
 
+const LS_CANDIDATE_STORE_KEY = "church_election_candidate_store";
+
 interface State {
   candidates: Candidate[];
   totalBallots: number;
@@ -43,7 +45,7 @@ export const useCandidateStore = create<State & Action>()(
       updateTotalBallots: (total: number) => set({ totalBallots: total }),
     }),
     {
-      name: "xxxxx",
+      name: LS_CANDIDATE_STORE_KEY,
       partialize: (state) => ({
         candidates: state.candidates,
         totalBallots: state.totalBallots,
