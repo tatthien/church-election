@@ -1,0 +1,14 @@
+.list {
+  overflow-y: auto;
+  height: calc(100vh - 220px);
+}
+
+.name {
+  flex: 1;
+}
+
+.input {
+  font-weight: 600;
+  width: 3em !important;
+  font-size: 1.5rem !important;
+}
