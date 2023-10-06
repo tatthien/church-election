@@ -1,6 +1,6 @@
 .list {
   overflow-y: auto;
-  height: calc(100vh - 204px);
+  height: calc(100vh - 178px);
 }
 
 .name {

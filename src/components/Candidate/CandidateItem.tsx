@@ -131,7 +131,7 @@ export function CandidateItem({ item, textAlign }: CandidateItemProps) {
             onChange={(value: number) => setVotes(value)}
             onKeyPress={handleSubmitVotes}
           />
-          <Menu shadow="md" width={200} position="bottom-end">
+          <Menu shadow="md" radius="xs" width={200} position="bottom-end">
             <Menu.Target>
               <ActionIcon variant="white" color="gray">
                 <IconDotsVertical size={18} />

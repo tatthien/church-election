@@ -1,6 +1,6 @@
 import { AppLayout, TableResult, CandidateList } from "@/components";
 import { Allotment } from "allotment";
-import { Box, TextInput } from "@mantine/core";
+import { Box, TextInput, rem } from "@mantine/core";
 import { IconUser } from "@tabler/icons-react";
 import { useCandidateStore } from "@/stores";
 import { useState } from "react";
@@ -25,13 +25,19 @@ function App() {
       <Allotment>
         <Allotment.Pane minSize={530}>
           <Box
-            p={16}
+            px={16}
+            py={10}
             style={(theme) => ({
-              borderBottom: `1px solid ${theme.colors.gray[4]}`,
+              borderBottom: `1px solid ${theme.colors.gray[3]}`,
             })}
           >
             <form onSubmit={handleAddCandidate}>
               <TextInput
+                styles={{
+                  input: {
+                    fontSize: rem(24),
+                  },
+                }}
                 size="md"
                 radius="xs"
                 placeholder="Nhập họ tên và nhấn Enter"
@@ -42,12 +48,10 @@ function App() {
               />
             </form>
           </Box>
-          <Box p={16}>
-            <CandidateList />
-          </Box>
+          <CandidateList />
         </Allotment.Pane>
         <Allotment.Pane minSize={530}>
-          <Box p={16}>
+          <Box px={16} py={10}>
             <TableResult />
           </Box>
         </Allotment.Pane>

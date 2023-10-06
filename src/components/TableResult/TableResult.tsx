@@ -91,7 +91,14 @@ export function TableResult() {
 
   return (
     <Paper shadow="xs" radius="xs" withBorder>
-      <Flex p={16} align="center" justify="space-between" bg="gray.0">
+      <Flex
+        style={{ borderBottom: "1px solid var(--mantine-color-gray-3)" }}
+        py={8}
+        px={16}
+        align="center"
+        justify="space-between"
+        bg="gray.0"
+      >
         <Group>
           <Flex align="center">
             <Text component="span" size="sm" mr={4} color="gray.7">

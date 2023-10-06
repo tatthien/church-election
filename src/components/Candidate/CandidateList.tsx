@@ -37,7 +37,7 @@ export function CandidateList() {
     <Box>
       {candidates.length > 0 ? (
         <>
-          <Group align="center" justify="space-between" mb={16}>
+          <Group align="center" justify="space-between" px={16} py={10}>
             <ActionIcon.Group>
               <ActionIcon
                 radius="xs"
@@ -71,7 +71,13 @@ export function CandidateList() {
               Xóa dữ liệu
             </Button>
           </Group>
-          <Flex direction="column" gap={10} className={classes.list}>
+          <Flex
+            direction="column"
+            px={16}
+            py={10}
+            gap={10}
+            className={classes.list}
+          >
             {candidates.map((candidate, index) => (
               <CandidateItem
                 key={candidate.id}
@@ -83,7 +89,7 @@ export function CandidateList() {
           </Flex>
         </>
       ) : (
-        <Text ta="center" color="gray.7">
+        <Text ta="center" color="gray.7" py={16}>
           Chưa có ứng viên
         </Text>
       )}
