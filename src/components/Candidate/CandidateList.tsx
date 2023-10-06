@@ -71,7 +71,7 @@ export function CandidateList() {
               Xóa dữ liệu
             </Button>
           </Group>
-          <Flex direction="column" gap={12} className={classes.list}>
+          <Flex direction="column" gap={10} className={classes.list}>
             {candidates.map((candidate, index) => (
               <CandidateItem
                 key={candidate.id}
