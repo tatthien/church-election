@@ -23,7 +23,7 @@ function App() {
   return (
     <AppLayout>
       <Allotment>
-        <Allotment.Pane minSize={200}>
+        <Allotment.Pane minSize={530}>
           <Box
             p={16}
             style={(theme) => ({
@@ -46,7 +46,7 @@ function App() {
             <CandidateList />
           </Box>
         </Allotment.Pane>
-        <Allotment.Pane minSize={200}>
+        <Allotment.Pane minSize={530}>
           <Box p={16}>
             <TableResult />
           </Box>
