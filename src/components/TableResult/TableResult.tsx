@@ -3,6 +3,7 @@ import { useCandidateStore } from "@/stores";
 import { useCallback, useMemo, useState } from "react";
 import { TableResultRow } from "./TableResultRow";
 import { utils, writeFile } from "xlsx";
+import { IconDownload } from "@tabler/icons-react";
 
 const headers = ["#", "Họ Tên", "Số Phiếu", "Phần Trăm"];
 
@@ -99,6 +100,7 @@ export function TableResult() {
           size="xs"
           variant="default"
           radius="xs"
+          leftSection={<IconDownload size={16} />}
           onClick={handleDownloadFile}
         >
           Tải file
