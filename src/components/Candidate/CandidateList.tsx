@@ -44,20 +44,20 @@ export function CandidateList() {
                 variant="default"
                 onClick={() => setTextAlign("left")}
               >
-                <IconAlignLeft />
+                <IconAlignLeft size={20} />
               </ActionIcon>
               <ActionIcon
                 variant="default"
                 onClick={() => setTextAlign("center")}
               >
-                <IconAlignCenter />
+                <IconAlignCenter size={20} />
               </ActionIcon>
               <ActionIcon
                 radius="xs"
                 variant="default"
                 onClick={() => setTextAlign("right")}
               >
-                <IconAlignRight />
+                <IconAlignRight size={20} />
               </ActionIcon>
             </ActionIcon.Group>
             <Button

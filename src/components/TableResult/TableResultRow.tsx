@@ -7,9 +7,10 @@ import { IconCircleCheckFilled } from "@tabler/icons-react";
 interface TableResultRowProps {
   item: Candidate;
   index: number;
+  fontSize?: number;
 }
 
-export function TableResultRow({ item, index }: TableResultRowProps) {
+export function TableResultRow({ item, index, fontSize }: TableResultRowProps) {
   const totalBallots = useCandidateStore((state) => state.totalBallots);
 
   const passed = useMemo(() => {
@@ -21,7 +22,7 @@ export function TableResultRow({ item, index }: TableResultRowProps) {
   }, [item, totalBallots]);
 
   return (
-    <Table.Tr key={item.id} fz="md">
+    <Table.Tr key={item.id} fz={fontSize ?? 14}>
       <Table.Td>{index + 1}</Table.Td>
       <Table.Td>
         <Flex align="center" gap={4}>
@@ -40,7 +41,12 @@ export function TableResultRow({ item, index }: TableResultRowProps) {
         </Flex>
       </Table.Td>
       <Table.Td>
-        <Text component="span" fw={700} color={passed ? "green.6" : "dark"}>
+        <Text
+          component="span"
+          fw={700}
+          color={passed ? "green.6" : "dark"}
+          fz={fontSize}
+        >
           {item.votes}
         </Text>
         {`/${totalBallots}`}

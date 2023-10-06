@@ -1,15 +1,34 @@
-import { Table, Paper, Flex, Group, Button, Select, Text } from "@mantine/core";
+import {
+  Table,
+  Paper,
+  Flex,
+  Group,
+  Button,
+  Select,
+  Text,
+  Box,
+  ActionIcon,
+} from "@mantine/core";
 import { useCandidateStore } from "@/stores";
 import { useCallback, useMemo, useState } from "react";
 import { TableResultRow } from "./TableResultRow";
 import { utils, writeFile } from "xlsx";
-import { IconDownload } from "@tabler/icons-react";
+import {
+  IconDownload,
+  IconTextDecrease,
+  IconTextIncrease,
+} from "@tabler/icons-react";
+import classes from "./TableResult.module.css";
 
 const headers = ["#", "Họ Tên", "Số Phiếu", "Phần Trăm"];
+const fontSizeMin = 14;
+const fontSizeMax = 24;
+const fontSizeStep = 2;
 
 export function TableResult() {
   const [filterByResult, setFilterByResult] = useState("all");
   const [sortByVotes, setSortByVotes] = useState("high_to_low");
+  const [tableFontSize, setTableFontSize] = useState(16);
   const candidates = useCandidateStore((state) => state.candidates);
   const totalBallots = useCandidateStore((state) => state.totalBallots);
 
@@ -19,6 +38,16 @@ export function TableResult() {
     },
     [totalBallots],
   );
+
+  function increaseTableFontSize() {
+    if (tableFontSize >= fontSizeMax) return;
+    setTableFontSize(tableFontSize + fontSizeStep);
+  }
+
+  function decreaseTableFontSize() {
+    if (tableFontSize <= fontSizeMin) return;
+    setTableFontSize(tableFontSize - fontSizeStep);
+  }
 
   function handleDownloadFile() {
     const worksheet = utils.json_to_sheet(
@@ -52,7 +81,12 @@ export function TableResult() {
   }, [candidates, filterByResult, sortByVotes, totalBallots]);
 
   const rows = sortedCandidates.map((element, index) => (
-    <TableResultRow item={element} index={index} key={element.id} />
+    <TableResultRow
+      item={element}
+      index={index}
+      key={element.id}
+      fontSize={tableFontSize}
+    />
   ));
 
   return (
@@ -68,6 +102,8 @@ export function TableResult() {
               variant="unstyled"
               radius="xs"
               value={filterByResult}
+              checkIconPosition="right"
+              aria-label="Filter by results select"
               data={[
                 { value: "all", label: "Tất cả" },
                 { value: "passed", label: "Quá bán" },
@@ -86,6 +122,8 @@ export function TableResult() {
               variant="unstyled"
               radius="xs"
               value={sortByVotes}
+              checkIconPosition="right"
+              aria-label="Sort by votes select"
               data={[
                 { value: "default", label: "Mặc định" },
                 { value: "low_to_high", label: "Tăng dần" },
@@ -95,6 +133,22 @@ export function TableResult() {
               onChange={(value) => setSortByVotes(value as string)}
             />
           </Flex>
+          <ActionIcon.Group>
+            <ActionIcon
+              variant="default"
+              radius="xs"
+              onClick={decreaseTableFontSize}
+            >
+              <IconTextDecrease size={20} />
+            </ActionIcon>
+            <ActionIcon
+              variant="default"
+              radius="xs"
+              onClick={increaseTableFontSize}
+            >
+              <IconTextIncrease size={20} />
+            </ActionIcon>
+          </ActionIcon.Group>
         </Group>
         <Button
           size="xs"
@@ -106,16 +160,20 @@ export function TableResult() {
           Tải file
         </Button>
       </Flex>
-      <Table highlightOnHover={false}>
-        <Table.Thead fz="md">
-          <Table.Tr>
-            {headers.map((header) => (
-              <Table.Th key={header}>{header}</Table.Th>
-            ))}
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>{rows}</Table.Tbody>
-      </Table>
+      <Box className={classes.tableContainer}>
+        <Table highlightOnHover={false}>
+          <Table.Thead>
+            <Table.Tr>
+              {headers.map((header) => (
+                <Table.Th key={header} fz={tableFontSize}>
+                  {header}
+                </Table.Th>
+              ))}
+            </Table.Tr>
+          </Table.Thead>
+          <Table.Tbody>{rows}</Table.Tbody>
+        </Table>
+      </Box>
     </Paper>
   );
 }
