@@ -133,6 +133,8 @@ export function TableResult() {
               onChange={(value) => setSortByVotes(value as string)}
             />
           </Flex>
+        </Group>
+        <Group gap={8}>
           <ActionIcon.Group>
             <ActionIcon
               variant="default"
@@ -149,20 +151,20 @@ export function TableResult() {
               <IconTextIncrease size={20} />
             </ActionIcon>
           </ActionIcon.Group>
+          <Button
+            size="xs"
+            variant="default"
+            radius="xs"
+            leftSection={<IconDownload size={18} />}
+            onClick={handleDownloadFile}
+          >
+            Tải file
+          </Button>
         </Group>
-        <Button
-          size="xs"
-          variant="default"
-          radius="xs"
-          leftSection={<IconDownload size={16} />}
-          onClick={handleDownloadFile}
-        >
-          Tải file
-        </Button>
       </Flex>
       <Box className={classes.tableContainer}>
-        <Table highlightOnHover={false}>
-          <Table.Thead>
+        <Table highlightOnHover={false} className={classes.table}>
+          <Table.Thead className={classes.thead}>
             <Table.Tr>
               {headers.map((header) => (
                 <Table.Th key={header} fz={tableFontSize}>
