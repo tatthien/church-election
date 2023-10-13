@@ -100,14 +100,23 @@ export function TableResult() {
     return items;
   }, [candidates, filterByResult, sortByVotes, totalBallots]);
 
-  const rows = sortedCandidates.map((element, index) => (
-    <TableResultRow
-      item={element}
-      index={index}
-      key={element.id}
-      fontSize={tableFontSize}
-    />
-  ));
+  const rows =
+    sortedCandidates.length > 0 ? (
+      sortedCandidates.map((element, index) => (
+        <TableResultRow
+          item={element}
+          index={index}
+          key={element.id}
+          fontSize={tableFontSize}
+        />
+      ))
+    ) : (
+      <Table.Tr>
+        <Table.Td colSpan={4} ta="center">
+          Chưa có ứng viên
+        </Table.Td>
+      </Table.Tr>
+    );
 
   return (
     <Paper radius="sm" withBorder>
@@ -140,7 +149,7 @@ export function TableResult() {
             />
           </Flex>
           <Flex align="center">
-            <Text component="span" size="sm" mr={4} color="gray.7">
+            <Text component="span" size="sm" mr={4} c="gray.7">
               Sắp xếp:
             </Text>
             <Select
