@@ -94,7 +94,7 @@ export function CandidateItem({ item, textAlign }: CandidateItemProps) {
   };
 
   return (
-    <Paper withBorder radius="sm" py={8} px={12}>
+    <Paper withBorder radius="sm" py={6} px={12}>
       <Flex justify="space-between" align="center" gap={12}>
         <Text fw={600} fz={24} className={classes.name} ta={textAlign}>
           {item.name}
