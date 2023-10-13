@@ -22,7 +22,7 @@ import classes from "./TableResult.module.css";
 
 const headers = ["#", "Họ Tên", "Số Phiếu", "Phần Trăm"];
 const fontSizeMin = 14;
-const fontSizeMax = 24;
+const fontSizeMax = 28;
 const fontSizeStep = 2;
 
 export function TableResult() {
