@@ -1,6 +1,17 @@
 .list {
+  display: grid;
+  grid-auto-rows: min-content;
+  gap: 0.5rem;
   overflow-y: auto;
   height: calc(100vh - 178px);
+}
+
+.layoutList {
+  grid-template-columns: 1fr;
+}
+
+.layoutColumn {
+  grid-template-columns: 1fr 1fr;
 }
 
 .name {
