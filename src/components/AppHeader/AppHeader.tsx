@@ -45,7 +45,7 @@ export function AppHeader() {
                 classNames={{
                   input: classes.input,
                 }}
-                radius="xs"
+                radius="sm"
                 value={total}
                 hideControls
                 data-autofocus

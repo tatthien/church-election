@@ -39,7 +39,7 @@ function App() {
                   },
                 }}
                 size="md"
-                radius="xs"
+                radius="sm"
                 placeholder="Nhập họ tên và nhấn Enter"
                 fw={600}
                 leftSection={<IconUser />}

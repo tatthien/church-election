@@ -15,12 +15,32 @@ import { TableResultRow } from "./TableResultRow";
 import { utils, writeFile } from "xlsx";
 import {
   IconDownload,
+  IconFiles,
+  IconPercentage,
   IconTextDecrease,
   IconTextIncrease,
+  IconUser,
 } from "@tabler/icons-react";
 import classes from "./TableResult.module.css";
 
-const headers = ["#", "Họ Tên", "Số Phiếu", "Phần Trăm"];
+const headers = [
+  {
+    label: "#",
+    icon: "",
+  },
+  {
+    label: "Họ tên",
+    icon: <IconUser size={18} />,
+  },
+  {
+    label: "Số phiếu",
+    icon: <IconFiles size={18} />,
+  },
+  {
+    label: "Phần trăm",
+    icon: <IconPercentage size={18} />,
+  },
+];
 const fontSizeMin = 14;
 const fontSizeMax = 28;
 const fontSizeStep = 2;
@@ -90,18 +110,17 @@ export function TableResult() {
   ));
 
   return (
-    <Paper shadow="xs" radius="xs" withBorder>
+    <Paper radius="sm" withBorder>
       <Flex
         style={{ borderBottom: "1px solid var(--mantine-color-gray-3)" }}
         py={8}
         px={16}
         align="center"
         justify="space-between"
-        bg="gray.0"
       >
         <Group>
           <Flex align="center">
-            <Text component="span" size="sm" mr={4} color="gray.7">
+            <Text component="span" size="sm" mr={4} c="gray.7">
               Lọc:
             </Text>
             <Select
@@ -174,8 +193,11 @@ export function TableResult() {
           <Table.Thead className={classes.thead}>
             <Table.Tr>
               {headers.map((header) => (
-                <Table.Th key={header} fz={tableFontSize}>
-                  {header}
+                <Table.Th key={header.label} fw={400} c="gray.7">
+                  <Flex align="center" gap={4}>
+                    {header.icon}
+                    {header.label}
+                  </Flex>
                 </Table.Th>
               ))}
             </Table.Tr>

@@ -55,21 +55,17 @@ export function FormEditCandidate({ data }: FormEditCandidateProps) {
           label="Họ tên"
           placeholder="Nhập họ và tên"
           data-autofocus
-          radius="xs"
           mb={8}
           {...form.getInputProps("name")}
         />
         <NumberInput
           label="Số phiếu"
           hideControls
-          radius="xs"
           {...form.getInputProps("votes")}
         />
       </FocusTrap>
       <Group justify="flex-end" mt="md">
-        <Button type="submit" radius="xs">
-          Cập nhật
-        </Button>
+        <Button type="submit">Cập nhật</Button>
       </Group>
     </form>
   );

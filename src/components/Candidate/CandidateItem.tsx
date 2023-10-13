@@ -94,14 +94,14 @@ export function CandidateItem({ item, textAlign }: CandidateItemProps) {
   };
 
   return (
-    <Paper withBorder shadow="xs" radius="xs" py={8} px={12}>
+    <Paper withBorder radius="sm" py={8} px={12}>
       <Flex justify="space-between" align="center" gap={12}>
         <Text fw={600} fz={24} className={classes.name} ta={textAlign}>
           {item.name}
         </Text>
         <Group align="center" gap={8}>
           <ActionIcon
-            radius="xs"
+            radius="sm"
             size="lg"
             aria-label="Downvote by one"
             variant="light"
@@ -111,7 +111,7 @@ export function CandidateItem({ item, textAlign }: CandidateItemProps) {
             <IconMinus size={20} stroke={3} />
           </ActionIcon>
           <ActionIcon
-            radius="xs"
+            radius="sm"
             size="lg"
             aria-label="Upvote by one"
             variant="light"
@@ -124,14 +124,14 @@ export function CandidateItem({ item, textAlign }: CandidateItemProps) {
             classNames={{
               input: classes.input,
             }}
-            radius="xs"
+            radius="sm"
             value={votes}
             hideControls
             data-autofocus
             onChange={(value: number) => setVotes(value)}
             onKeyPress={handleSubmitVotes}
           />
-          <Menu shadow="md" radius="xs" width={200} position="bottom-end">
+          <Menu shadow="md" radius="sm" width={200} position="bottom-end">
             <Menu.Target>
               <ActionIcon variant="white" color="gray">
                 <IconDotsVertical size={18} />
