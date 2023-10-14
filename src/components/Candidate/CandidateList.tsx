@@ -48,6 +48,7 @@ export function CandidateList() {
                   <ActionIcon
                     radius="xs"
                     variant="default"
+                    c={textAlign === "left" ? "blue" : "dark"}
                     onClick={() => setTextAlign("left")}
                   >
                     <IconAlignLeft size={20} />
@@ -57,6 +58,7 @@ export function CandidateList() {
                   <ActionIcon
                     radius="xs"
                     variant="default"
+                    c={textAlign === "center" ? "blue" : "dark"}
                     onClick={() => setTextAlign("center")}
                   >
                     <IconAlignCenter size={20} />
@@ -66,6 +68,7 @@ export function CandidateList() {
                   <ActionIcon
                     radius="xs"
                     variant="default"
+                    c={textAlign === "right" ? "blue" : "dark"}
                     onClick={() => setTextAlign("right")}
                   >
                     <IconAlignRight size={20} />
@@ -77,6 +80,7 @@ export function CandidateList() {
                   <ActionIcon
                     radius="xs"
                     variant="default"
+                    c={layout === "list" ? "blue" : "dark"}
                     onClick={() => setLayout("list")}
                   >
                     <IconList size={20} />
@@ -86,6 +90,7 @@ export function CandidateList() {
                   <ActionIcon
                     radius="xs"
                     variant="default"
+                    c={layout === "column" ? "blue" : "dark"}
                     onClick={() => setLayout("column")}
                   >
                     <IconColumns size={20} />
