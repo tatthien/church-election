@@ -82,7 +82,7 @@ export function TableResult() {
     );
     const workbook = utils.book_new();
     utils.book_append_sheet(workbook, worksheet, "Sheet 1");
-    writeFile(workbook, `danh-sach-ung-vien-${Date.now().toString()}.xlsx`);
+    writeFile(workbook, `danh-sach-ung-vien-${new Date().toLocaleDateString()}.xlsx`);
   }
 
   const sortedCandidates = useMemo(() => {
@@ -161,10 +161,10 @@ export function TableResult() {
               aria-label="Sort by votes select"
               data={[
                 { value: "default", label: "Mặc định" },
-                { value: "low_to_high", label: "Tăng dần" },
-                { value: "high_to_low", label: "Giảm dần" },
+                { value: "low_to_high", label: "Phiếu tăng dần" },
+                { value: "high_to_low", label: "Phiếu giảm dần" },
               ]}
-              w={140}
+              w={150}
               onChange={(value) => setSortByVotes(value as string)}
             />
           </Flex>

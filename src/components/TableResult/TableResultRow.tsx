@@ -44,7 +44,7 @@ export function TableResultRow({ item, index, fontSize }: TableResultRowProps) {
         <Text
           component="span"
           fw={700}
-          color={passed ? "green.6" : "dark"}
+          c={passed ? "green.6" : "dark"}
           fz={fontSize}
         >
           {item.votes}

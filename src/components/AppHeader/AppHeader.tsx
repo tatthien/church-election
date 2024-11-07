@@ -10,7 +10,7 @@ import {
 import classes from "./AppHeader.module.css";
 import { useCandidateStore } from "@/stores";
 import { useState } from "react";
-import { IconBulb, IconEdit, IconX } from "@tabler/icons-react";
+import { IconBulb, IconPencil, IconX } from "@tabler/icons-react";
 
 export function AppHeader() {
   const totalBallots = useCandidateStore((state) => state.totalBallots);
@@ -31,7 +31,7 @@ export function AppHeader() {
   return (
     <Group className={classes.header} justify="space-between" align="center">
       <Flex align="center" gap={8}>
-        <Text fw={600} fz={24} color="gray.6">
+        <Text fw={600} fz={24} c="gray.6">
           Tổng số phiếu
         </Text>
         {!isEditing ? (
@@ -55,14 +55,14 @@ export function AppHeader() {
           </form>
         )}
         <ActionIcon
-          variant="white"
+          variant="subtle"
           color="dark"
-          size="lg"
-          radius="xs"
+          size="md"
           onClick={() => setIsEditing(!isEditing)}
         >
-          {!isEditing ? <IconEdit size={20} /> : <IconX size={20} />}
+          {!isEditing ? <IconPencil size={20} /> : <IconX size={20} />}
         </ActionIcon>
+        {isEditing && <Text size="sm" c='gray.6'>Nhấn Enter để lưu</Text>}
       </Flex>
       <Text fw={500} fz='sm' c="blue" style={{ display: 'flex', gap: 6 }}>
         <IconBulb size={20} />
