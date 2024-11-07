@@ -1,16 +1,16 @@
 import {
-  Box,
   Flex,
   Text,
   NumberInput,
   ActionIcon,
   FocusTrap,
+  Group,
 } from "@mantine/core";
 
 import classes from "./AppHeader.module.css";
 import { useCandidateStore } from "@/stores";
 import { useState } from "react";
-import { IconEdit, IconX } from "@tabler/icons-react";
+import { IconBulb, IconEdit, IconX } from "@tabler/icons-react";
 
 export function AppHeader() {
   const totalBallots = useCandidateStore((state) => state.totalBallots);
@@ -29,7 +29,7 @@ export function AppHeader() {
   };
 
   return (
-    <Box component="header" className={classes.header}>
+    <Group className={classes.header} justify="space-between" align="center">
       <Flex align="center" gap={8}>
         <Text fw={600} fz={24} color="gray.6">
           Tổng số phiếu
@@ -64,6 +64,10 @@ export function AppHeader() {
           {!isEditing ? <IconEdit size={20} /> : <IconX size={20} />}
         </ActionIcon>
       </Flex>
-    </Box>
+      <Text fw={500} fz='sm' c="blue" style={{ display: 'flex', gap: 6 }}>
+        <IconBulb size={20} />
+        Dữ liệu sẽ được lưu lại trên trình duyệt của bạn
+      </Text>
+    </Group>
   );
 }
