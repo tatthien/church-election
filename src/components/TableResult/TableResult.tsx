@@ -17,6 +17,7 @@ import {
   IconDownload,
   IconFiles,
   IconPercentage,
+  IconRefresh,
   IconTextDecrease,
   IconTextIncrease,
   IconUser,
@@ -41,14 +42,22 @@ const headers = [
     icon: <IconPercentage size={18} />,
   },
 ];
+
 const fontSizeMin = 14;
 const fontSizeMax = 28;
 const fontSizeStep = 2;
 
+const FONT_SIZE = {
+  default: 16,
+  min: 14,
+  max: 28,
+  step: 2,
+}
+
 export function TableResult() {
   const [filterByResult, setFilterByResult] = useState("all");
   const [sortByVotes, setSortByVotes] = useState("high_to_low");
-  const [tableFontSize, setTableFontSize] = useState(16);
+  const [tableFontSize, setTableFontSize] = useState(FONT_SIZE.default);
   const candidates = useCandidateStore((state) => state.candidates);
   const totalBallots = useCandidateStore((state) => state.totalBallots);
 
@@ -60,13 +69,13 @@ export function TableResult() {
   );
 
   function increaseTableFontSize() {
-    if (tableFontSize >= fontSizeMax) return;
-    setTableFontSize(tableFontSize + fontSizeStep);
+    if (tableFontSize >= FONT_SIZE.max) return;
+    setTableFontSize(tableFontSize + FONT_SIZE.step);
   }
 
   function decreaseTableFontSize() {
-    if (tableFontSize <= fontSizeMin) return;
-    setTableFontSize(tableFontSize - fontSizeStep);
+    if (tableFontSize <= FONT_SIZE.min) return;
+    setTableFontSize(tableFontSize - FONT_SIZE.step);
   }
 
   function handleDownloadFile() {
@@ -177,6 +186,13 @@ export function TableResult() {
               onClick={decreaseTableFontSize}
             >
               <IconTextDecrease size={20} />
+            </ActionIcon>
+            <ActionIcon
+              variant="default"
+              radius="xs"
+              onClick={() => setTableFontSize(FONT_SIZE.default)}
+            >
+              <IconRefresh size={18} />
             </ActionIcon>
             <ActionIcon
               variant="default"
