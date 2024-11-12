@@ -43,10 +43,6 @@ const headers = [
   },
 ];
 
-const fontSizeMin = 14;
-const fontSizeMax = 28;
-const fontSizeStep = 2;
-
 const FONT_SIZE = {
   default: 16,
   min: 14,
@@ -209,7 +205,7 @@ export function TableResult() {
             leftSection={<IconDownload size={18} />}
             onClick={handleDownloadFile}
           >
-            Tải file
+            Tải danh sách
           </Button>
         </Group>
       </Flex>
