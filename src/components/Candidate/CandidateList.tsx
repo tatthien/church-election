@@ -167,6 +167,7 @@ export function CandidateList() {
           classes.list,
           layout === "list" ? classes.layoutList : classes.layoutColumn,
         ])}
+        data-test='candidate-list'
       >
         {candidates.map((candidate, index) => (
           <CandidateItem

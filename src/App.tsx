@@ -44,6 +44,7 @@ function App() {
                 fw={600}
                 leftSection={<IconUser />}
                 value={candidateName}
+                data-test='new-candidate'
                 onChange={(e) => setCandidateName(e.currentTarget.value)}
               />
             </form>
