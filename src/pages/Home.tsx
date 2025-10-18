@@ -25,41 +25,43 @@ export default function Home() {
   return (
     <AppLayout>
       <AppHeader />
-      <Allotment>
-        <Allotment.Pane minSize={530}>
-          <Box
-            px={16}
-            py={10}
-            style={(theme) => ({
-              borderBottom: `1px solid ${theme.colors.gray[3]}`,
-            })}
-          >
-            <form onSubmit={handleAddCandidate}>
-              <TextInput
-                styles={{
-                  input: {
-                    fontSize: rem(24),
-                  },
-                }}
-                size="md"
-                radius="sm"
-                placeholder="Nhập họ tên và nhấn Enter"
-                fw={600}
-                leftSection={<IconUser />}
-                value={candidateName}
-                data-test='new-candidate'
-                onChange={(e) => setCandidateName(e.currentTarget.value)}
-              />
-            </form>
-          </Box>
-          <CandidateList />
-        </Allotment.Pane>
-        <Allotment.Pane minSize={530}>
-          <Box px={16} py={10}>
-            <TableResult totalBallots={totalBallots} candidates={candidates} />
-          </Box>
-        </Allotment.Pane>
-      </Allotment>
+      <Box style={{ height: 'calc(100vh - 85px)' }}>
+        <Allotment>
+          <Allotment.Pane minSize={530}>
+            <Box
+              px={16}
+              py={10}
+              style={(theme) => ({
+                borderBottom: `1px solid ${theme.colors.gray[3]}`,
+              })}
+            >
+              <form onSubmit={handleAddCandidate}>
+                <TextInput
+                  styles={{
+                    input: {
+                      fontSize: rem(24),
+                    },
+                  }}
+                  size="md"
+                  radius="sm"
+                  placeholder="Nhập họ tên và nhấn Enter"
+                  fw={600}
+                  leftSection={<IconUser />}
+                  value={candidateName}
+                  data-test='new-candidate'
+                  onChange={(e) => setCandidateName(e.currentTarget.value)}
+                />
+              </form>
+            </Box>
+            <CandidateList />
+          </Allotment.Pane>
+          <Allotment.Pane minSize={530}>
+            <Box px={16} py={10}>
+              <TableResult totalBallots={totalBallots} candidates={candidates} />
+            </Box>
+          </Allotment.Pane>
+        </Allotment>
+      </Box>
     </AppLayout>
   );
 }

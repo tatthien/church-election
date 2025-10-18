@@ -61,32 +61,34 @@ export default function Calculator() {
 
   return (
     <AppLayout>
-      <Allotment>
-        <Allotment.Pane minSize={530} preferredSize={600}>
-          <Title order={1} fz={32} p={16}>Tính tổng số</Title>
-          <Box px={16}>
-            <Alert title="Lưu ý" mb={16}>
-              Để tính tổng số phiếu chính xác, tên các ứng viên từ các nguồn phải giống nhau.
-            </Alert>
-            <Stack>
-              {fields}
-              <Flex>
-                <Button variant="default" onClick={() => {
-                  form.insertListItem('data', '')
-                }}>Thêm dữ liệu</Button>
-              </Flex>
-            </Stack>
-          </Box>
-        </Allotment.Pane>
-        <Allotment.Pane minSize={530}>
-          <Box px={16} py={10}>
-            <Box mb={16}>
-              <Text span fz="lg">Tổng số phiếu: <Text span fw={600} inherit>{totalBallots}</Text></Text>
+      <Box style={{ height: 'calc(100vh - 40px)' }}>
+        <Allotment>
+          <Allotment.Pane minSize={530} preferredSize={600}>
+            <Title order={1} fz={32} p={16}>Tính tổng số</Title>
+            <Box px={16}>
+              <Alert title="Lưu ý" mb={16}>
+                Để tính tổng số phiếu chính xác, tên các ứng viên từ các nguồn phải giống nhau.
+              </Alert>
+              <Stack style={{ overflowY: 'auto', height: 'calc(100vh - 230px)' }}>
+                {fields}
+                <Flex>
+                  <Button variant="default" onClick={() => {
+                    form.insertListItem('data', '')
+                  }}>Thêm dữ liệu</Button>
+                </Flex>
+              </Stack>
             </Box>
-            <TableResult totalBallots={totalBallots} candidates={candidates} />
-          </Box>
-        </Allotment.Pane>
-      </Allotment>
+          </Allotment.Pane>
+          <Allotment.Pane minSize={530}>
+            <Box px={16} py={10}>
+              <Box mb={16}>
+                <Text span fz="lg">Tổng số phiếu: <Text span fw={600} inherit>{totalBallots}</Text></Text>
+              </Box>
+              <TableResult totalBallots={totalBallots} candidates={candidates} />
+            </Box>
+          </Allotment.Pane>
+        </Allotment>
+      </Box>
     </AppLayout>
   );
 }

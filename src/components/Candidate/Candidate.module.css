@@ -3,7 +3,7 @@
   grid-auto-rows: min-content;
   gap: 0.5rem;
   overflow-y: auto;
-  height: calc(100vh - 178px);
+  height: calc(100vh - 210px);
 }
 
 .layoutList {
