@@ -18,7 +18,7 @@ export function PasteCandidatesButton() {
       leftSection={<IconClipboard size={18} />}
       onClick={handleOpenModal}
     >
-      Nạp từ dánh sách có sẵn
+      Nạp từ danh sách có sẵn
     </Button>
   )
 }
