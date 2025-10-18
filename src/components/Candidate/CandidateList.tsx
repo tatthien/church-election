@@ -15,6 +15,7 @@ import { clsx } from "clsx";
 import { CopyCandidatesButton } from "../CopyCandidatesButton";
 import { ImportSampleDataButton } from "../ImportSampleDataButton";
 import { ResetDataButton } from "../ResetDataButton";
+import { PasteCandidatesButton } from "../PasteCandidatesButton";
 
 export function CandidateList() {
   const [textAlign, setTextAlign] = useState<"left" | "center" | "right">(
@@ -30,11 +31,15 @@ export function CandidateList() {
           <Text c='blue.3' span>
             <IconUsers size={60} strokeWidth={1} color="currentColor" />
           </Text>
-          <Text ta="center" color="gray.7">
+          <Text ta="center" c="gray.7">
             Chưa có ứng viên
           </Text>
         </Stack>
-        <ImportSampleDataButton />
+        <Group>
+          <ImportSampleDataButton />
+          <Text>hoặc</Text>
+          <PasteCandidatesButton />
+        </Group>
       </Stack>
     )
   }

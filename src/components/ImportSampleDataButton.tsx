@@ -1,6 +1,7 @@
 import { useCandidateStore } from "@/stores";
 import { Candidate } from "@/types";
 import { Button } from "@mantine/core";
+import { IconDownload, IconFileImport } from "@tabler/icons-react";
 
 export function ImportSampleDataButton() {
   const addCandidate = useCandidateStore((state) => state.add);
@@ -40,6 +41,6 @@ export function ImportSampleDataButton() {
   }
 
   return (
-    <Button onClick={handlePopulateSampleData}>Nạp dữ liệu mẫu</Button>
+    <Button leftSection={<IconDownload size={18} />} onClick={handlePopulateSampleData}>Nạp dữ liệu mẫu</Button>
   )
 }
