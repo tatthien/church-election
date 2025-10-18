@@ -128,7 +128,7 @@ export function CandidateItem({ item, textAlign }: CandidateItemProps) {
             value={votes}
             hideControls
             data-autofocus
-            onChange={(value: number) => setVotes(value as number)}
+            onChange={(value) => setVotes(value as number)}
             onKeyPress={handleSubmitVotes}
           />
           <Menu shadow="md" radius="sm" width={200} position="bottom-end">
