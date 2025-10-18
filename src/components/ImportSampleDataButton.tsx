@@ -1,7 +1,7 @@
 import { useCandidateStore } from "@/stores";
 import { Candidate } from "@/types";
 import { Button } from "@mantine/core";
-import { IconDownload, IconFileImport } from "@tabler/icons-react";
+import { IconDownload } from "@tabler/icons-react";
 
 export function ImportSampleDataButton() {
   const addCandidate = useCandidateStore((state) => state.add);
