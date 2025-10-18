@@ -52,7 +52,12 @@ export default function Calculator() {
 
   const fields = form.values.data.map((_, index) => (
     <Group key={index}>
-      <Textarea {...form.getInputProps(`data.${index}`)} style={{ flex: 1 }} placeholder="Cung cấp dữ liệu kiểm phiếu" />
+      <Textarea
+        label={`Nhóm ${index + 1}`}
+        placeholder="Cung cấp dữ liệu kiểm phiếu"
+        style={{ flex: 1 }}
+        {...form.getInputProps(`data.${index}`)}
+      />
       <ActionIcon variant="light" color="red" radius="lg" onClick={() => { form.removeListItem('data', index) }}>
         <IconTrash size={16} />
       </ActionIcon>
@@ -67,9 +72,10 @@ export default function Calculator() {
             <Title order={1} fz={32} p={16}>Tính tổng số</Title>
             <Box px={16}>
               <Alert title="Lưu ý" mb={16}>
-                Để tính tổng số phiếu chính xác, tên các ứng viên từ các nguồn phải giống nhau.
+                Để tính tổng số phiếu của từng ứng viên chính xác thì tên các ứng viên từ các nguồn phải giống nhau.
               </Alert>
               <Stack style={{ overflowY: 'auto', height: 'calc(100vh - 230px)' }}>
+                {form.values.data.length === 0 && <Text fz="sm" c="gray.7">Chưa có dữ liệu. Bấm "Thêm dữ liệu" để bắt đầu.</Text>}
                 {fields}
                 <Flex>
                   <Button variant="default" onClick={() => {
@@ -82,7 +88,7 @@ export default function Calculator() {
           <Allotment.Pane minSize={530}>
             <Box px={16} py={10}>
               <Box mb={16}>
-                <Text span fz="lg">Tổng số phiếu: <Text span fw={600} inherit>{totalBallots}</Text></Text>
+                <Text span fz="lg">{`Tổng số phiếu từ ${form.values.data.length} nhóm:`} <Text span fw={600} inherit>{totalBallots}</Text></Text>
               </Box>
               <TableResult totalBallots={totalBallots} candidates={candidates} />
             </Box>
