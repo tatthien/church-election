@@ -14,7 +14,7 @@ export function CopyResultButton() {
         totalBallots,
       }))
       setCopied(true)
-      setTimeout(() => { setCopied(false) }, 1500)
+      setTimeout(() => { setCopied(false) }, 1000)
     } catch (err) {
       console.error('Failed to copy:', err)
     }
@@ -22,7 +22,7 @@ export function CopyResultButton() {
 
   return (
     <Button
-      size="compact-sm"
+      size="xs"
       variant="light"
       leftSection={copied ? <IconCheck size={20} /> : <IconCopy size={20} />}
       onClick={handleCopy}
