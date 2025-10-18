@@ -15,6 +15,7 @@ import { modals } from "@mantine/modals";
 import classes from "./Candidate.module.css";
 import { clsx } from "clsx";
 import { Candidate } from "@/types";
+import { CopyCandidatesButton } from "../CopyCandidatesButton";
 
 export function CandidateList() {
   const [textAlign, setTextAlign] = useState<"left" | "center" | "right">(
@@ -149,16 +150,19 @@ export function CandidateList() {
             </Tooltip>
           </ActionIcon.Group>
         </Group>
-        <Button
-          size="xs"
-          color="red"
-          variant="light"
-          radius="xs"
-          leftSection={<IconRefresh size={18} />}
-          onClick={handleResetData}
-        >
-          Xóa dữ liệu
-        </Button>
+        <Group gap={6}>
+          <CopyCandidatesButton />
+          <Button
+            size="xs"
+            color="red"
+            variant="light"
+            radius="xs"
+            leftSection={<IconRefresh size={18} />}
+            onClick={handleResetData}
+          >
+            Xóa dữ liệu
+          </Button>
+        </Group>
       </Group>
       <Box
         px={16}
