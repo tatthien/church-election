@@ -11,6 +11,7 @@ import classes from "./AppHeader.module.css";
 import { useCandidateStore } from "@/stores";
 import { useState } from "react";
 import { IconBulb, IconPencil, IconX } from "@tabler/icons-react";
+import { CopyResultButton } from "../CopyResultButton";
 
 export function AppHeader() {
   const totalBallots = useCandidateStore((state) => state.totalBallots);
@@ -64,10 +65,13 @@ export function AppHeader() {
         </ActionIcon>
         {isEditing && <Text size="sm" c='gray.6'>Nhấn Enter để lưu</Text>}
       </Flex>
-      <Text fw={500} fz='sm' c="blue" style={{ display: 'flex', gap: 6 }}>
-        <IconBulb size={20} />
-        Dữ liệu sẽ được lưu lại trên trình duyệt của bạn
-      </Text>
+      <Group gap={16}>
+        <CopyResultButton />
+        <Text fw={500} fz='sm' c="blue" style={{ display: 'flex', gap: 6 }}>
+          <IconBulb size={20} />
+          Dữ liệu sẽ được lưu lại trên trình duyệt của bạn
+        </Text>
+      </Group>
     </Group>
   );
 }

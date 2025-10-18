@@ -7,6 +7,7 @@ const LS_CANDIDATE_STORE_KEY = "church_election_candidate_store";
 interface State {
   candidates: Candidate[];
   totalBallots: number;
+  calculatorData: string[]
 }
 
 type Action = {
@@ -23,6 +24,7 @@ export const useCandidateStore = create<State & Action>()(
       // state
       candidates: [],
       totalBallots: 100,
+      calculatorData: [],
 
       // actions
       add: (payload: Candidate) =>
@@ -49,7 +51,12 @@ export const useCandidateStore = create<State & Action>()(
       partialize: (state) => ({
         candidates: state.candidates,
         totalBallots: state.totalBallots,
+        calculatorData: state.calculatorData,
       }),
     },
   ),
 );
+
+export const setCalculatorData = (calculatorData: string[]) => {
+  useCandidateStore.setState({ calculatorData })
+}

@@ -8,14 +8,17 @@ import { MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
 import { Toaster } from "react-hot-toast";
 import theme from "./theme.ts";
+import { BrowserRouter } from 'react-router'
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <MantineProvider theme={theme} withCssVariables>
-      <ModalsProvider>
-        <Toaster />
-        <App />
-      </ModalsProvider>
-    </MantineProvider>
+    <BrowserRouter>
+      <MantineProvider theme={theme} withCssVariables>
+        <ModalsProvider>
+          <Toaster />
+          <App />
+        </ModalsProvider>
+      </MantineProvider>
+    </BrowserRouter>
   </React.StrictMode>,
 );

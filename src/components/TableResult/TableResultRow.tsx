@@ -1,18 +1,16 @@
 import { Candidate } from "@/types";
 import { Table, Flex, Box, Text } from "@mantine/core";
-import { useCandidateStore } from "@/stores";
 import { useMemo } from "react";
 import { IconCircleCheckFilled } from "@tabler/icons-react";
 
 interface TableResultRowProps {
   item: Candidate;
+  totalBallots: number;
   index: number;
   fontSize?: number;
 }
 
-export function TableResultRow({ item, index, fontSize }: TableResultRowProps) {
-  const totalBallots = useCandidateStore((state) => state.totalBallots);
-
+export function TableResultRow({ item, totalBallots, index, fontSize }: TableResultRowProps) {
   const passed = useMemo(() => {
     return totalBallots > 0 && item.votes >= totalBallots / 2;
   }, [item, totalBallots]);

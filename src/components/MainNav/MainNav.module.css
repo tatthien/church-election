@@ -1,0 +1,18 @@
+.nav {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--mantine-color-gray-4);
+  padding: 0.25rem 1rem;
+  background-color: #fff;
+}
+
+.item {
+  font-size: var(--mantine-font-size-sm);
+  text-decoration: none;
+  color: var(--mantine-color-gray-6);
+}
+
+.itemActive {
+  font-weight: 600;
+  color: var(--mantine-color-gray-8);
+}

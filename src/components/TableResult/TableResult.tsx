@@ -9,7 +9,6 @@ import {
   Box,
   ActionIcon,
 } from "@mantine/core";
-import { useCandidateStore } from "@/stores";
 import { useCallback, useMemo, useState } from "react";
 import { TableResultRow } from "./TableResultRow";
 import { utils, writeFile } from "xlsx";
@@ -23,6 +22,7 @@ import {
   IconUser,
 } from "@tabler/icons-react";
 import classes from "./TableResult.module.css";
+import { Candidate } from "@/types";
 
 const headers = [
   {
@@ -50,12 +50,15 @@ const FONT_SIZE = {
   step: 2,
 }
 
-export function TableResult() {
+type TableResultProps = {
+  totalBallots: number
+  candidates: Candidate[]
+}
+
+export function TableResult({ totalBallots, candidates }: TableResultProps) {
   const [filterByResult, setFilterByResult] = useState("all");
   const [sortByVotes, setSortByVotes] = useState("high_to_low");
   const [tableFontSize, setTableFontSize] = useState(FONT_SIZE.default);
-  const candidates = useCandidateStore((state) => state.candidates);
-  const totalBallots = useCandidateStore((state) => state.totalBallots);
 
   const calculatePercentage = useCallback(
     (votes: number) => {
@@ -110,6 +113,7 @@ export function TableResult() {
       sortedCandidates.map((element, index) => (
         <TableResultRow
           item={element}
+          totalBallots={totalBallots}
           index={index}
           key={element.id}
           fontSize={tableFontSize}
