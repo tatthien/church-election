@@ -1,9 +1,9 @@
 import { AppLayout, TableResult } from "@/components";
-import { ActionIcon, Alert, Box, Button, Flex, Group, Stack, Text, Textarea, Title } from "@mantine/core";
+import { ActionIcon, Alert, Box, Button, Flex, Group, Select, Stack, Text, Textarea, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { IconCalculator, IconTrash } from "@tabler/icons-react";
 import { Allotment } from "allotment";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import sumBy from 'lodash/sumBy'
 import flatMap from 'lodash/flatMap'
 import groupBy from 'lodash/groupBy'
@@ -12,6 +12,7 @@ import { setCalculatorData, useCandidateStore } from "@/stores";
 
 export default function Calculator() {
   const { calculatorData } = useCandidateStore.getState()
+  const [groupByCondition, setGroupByCondition] = useState<string | null>('name')
 
   const form = useForm({
     initialValues: {
@@ -31,13 +32,10 @@ export default function Calculator() {
 
     try {
       const jsonData = form.values.data.filter(v => v.trim() !== '').map(v => JSON.parse(v))
-
       const totalBallots = sumBy(jsonData, 'totalBallots')
-
-      const allCandidates = groupBy(flatMap(jsonData, 'candidates'), 'name')
-
+      const allCandidates = groupBy(flatMap(jsonData, 'candidates'), groupByCondition || 'name')
       const candidates = Object.entries(allCandidates).map((e) => ({
-        name: e[0],
+        name: e[1][0].name,
         votes: sumBy(e[1], 'votes')
       })) as Candidate[]
 
@@ -48,7 +46,7 @@ export default function Calculator() {
     } catch {
       return defaultResult
     }
-  }, [form.values.data])
+  }, [form.values.data, groupByCondition])
 
   const fields = form.values.data.map((_, index) => (
     <Group key={index}>
@@ -90,9 +88,26 @@ export default function Calculator() {
           </Allotment.Pane>
           <Allotment.Pane minSize={530}>
             <Box px={16} py={10}>
-              <Box mb={16}>
+              <Box mb={4}>
                 <Text span fz="lg">{`Tổng số phiếu từ ${form.values.data.length} nhóm:`} <Text span fw={600} inherit>{totalBallots}</Text></Text>
               </Box>
+              <Group mb={16} gap={4}>
+                <Text c='gray.7' size="sm">Kết quả được nhóm theo</Text>
+                <Select
+                  data={[
+                    { value: 'id', label: 'ID' },
+                    { value: 'name', label: 'Tên' },
+                  ]}
+                  value={groupByCondition}
+                  size="xs"
+                  w={64}
+                  allowDeselect={false}
+                  onChange={v => setGroupByCondition(v)}
+                  fw='600'
+                  withCheckIcon={false}
+                />
+                <Text c="gray.7" size="sm">ứng viên</Text>
+              </Group>
               <TableResult totalBallots={totalBallots} candidates={candidates} />
             </Box>
           </Allotment.Pane>
