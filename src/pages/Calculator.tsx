@@ -1,7 +1,7 @@
 import { AppLayout, TableResult } from "@/components";
 import { ActionIcon, Alert, Box, Button, Flex, Group, Stack, Text, Textarea, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { IconTrash } from "@tabler/icons-react";
+import { IconCalculator, IconTrash } from "@tabler/icons-react";
 import { Allotment } from "allotment";
 import { useEffect, useMemo } from "react";
 import sumBy from 'lodash/sumBy'
@@ -69,7 +69,10 @@ export default function Calculator() {
       <Box style={{ height: 'calc(100vh - 40px)' }}>
         <Allotment>
           <Allotment.Pane minSize={530} preferredSize={600}>
-            <Title order={1} fz={32} p={16}>Tính tổng số</Title>
+            <Group gap={8} p={16}>
+              <IconCalculator size={28} stroke={1.5} />
+              <Title order={1} fz={28}>Tính tổng số phiếu</Title>
+            </Group>
             <Box px={16}>
               <Alert title="Lưu ý" mb={16}>
                 Để tính tổng số phiếu của từng ứng viên chính xác thì tên các ứng viên từ các nguồn phải giống nhau.

@@ -6,7 +6,7 @@ export function MainNav() {
   return (
     <nav className={classes.nav}>
       <NavLink to="/" end className={({ isActive }) => (cx(classes.item, isActive && classes.itemActive))}>Kiểm phiếu</NavLink>
-      <NavLink to="/calculator" end className={({ isActive }) => (cx(classes.item, isActive && classes.itemActive))}>Tính tổng số</NavLink>
+      <NavLink to="/calculator" end className={({ isActive }) => (cx(classes.item, isActive && classes.itemActive))}>Tính tổng số phiếu</NavLink>
     </nav>
   )
 }
