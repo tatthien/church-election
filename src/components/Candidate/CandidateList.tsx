@@ -1,21 +1,20 @@
 import { useCandidateStore } from "@/stores";
 import { CandidateItem } from "./CandidateItem";
-import { Box, ActionIcon, Button, Group, Text, Tooltip, Stack } from "@mantine/core";
+import { Box, ActionIcon, Group, Text, Tooltip, Stack } from "@mantine/core";
 import {
   IconAlignLeft,
   IconAlignCenter,
   IconAlignRight,
-  IconRefresh,
   IconColumns,
   IconList,
   IconUsers,
 } from "@tabler/icons-react";
 import { useState } from "react";
-import { modals } from "@mantine/modals";
 import classes from "./Candidate.module.css";
 import { clsx } from "clsx";
-import { Candidate } from "@/types";
 import { CopyCandidatesButton } from "../CopyCandidatesButton";
+import { ImportSampleDataButton } from "../ImportSampleDataButton";
+import { ResetDataButton } from "../ResetDataButton";
 
 export function CandidateList() {
   const [textAlign, setTextAlign] = useState<"left" | "center" | "right">(
@@ -23,57 +22,6 @@ export function CandidateList() {
   );
   const [layout, setLayout] = useState<"list" | "column">("list");
   const candidates = useCandidateStore((state) => state.candidates);
-  const clearData = useCandidateStore((state) => state.clear);
-  const addCandidate = useCandidateStore((state) => state.add);
-  const updateTotalBallots = useCandidateStore((state) => state.updateTotalBallots);
-
-  const handleResetData = () => {
-    modals.openConfirmModal({
-      title: "Xóa dữ liệu",
-      children: (
-        <Text>
-          Bạn có chắc muốn xóa hết dữ liệu? Hành động này không thể khôi phục.
-        </Text>
-      ),
-      labels: { confirm: "Xóa", cancel: "Hủy bỏ" },
-      confirmProps: { color: "red" },
-      onCancel: () => console.log("Cancel"),
-      onConfirm: () => clearData(),
-    });
-  };
-
-  const handlePopulateSampleData = () => {
-    const candidates: Candidate[] = [
-      {
-        id: "1",
-        name: "Nguyen Van A",
-        votes: 0,
-      },
-      {
-        id: "2",
-        name: "Nguyen Van B",
-        votes: 3,
-      },
-      {
-        id: "3",
-        name: "Nguyen Van C",
-        votes: 20,
-      },
-      {
-        id: "4",
-        name: "Nguyen Van D",
-        votes: 0,
-      },
-    ]
-
-    // Add candidates
-    for (const candidate of candidates) {
-      addCandidate(candidate);
-    }
-
-    // Update total ballots
-    updateTotalBallots(40);
-  }
 
   if (!candidates.length) {
     return (
@@ -86,7 +34,7 @@ export function CandidateList() {
             Chưa có ứng viên
           </Text>
         </Stack>
-        <Button onClick={handlePopulateSampleData}>Nạp dữ liệu mẫu</Button>
+        <ImportSampleDataButton />
       </Stack>
     )
   }
@@ -152,16 +100,7 @@ export function CandidateList() {
         </Group>
         <Group gap={6}>
           <CopyCandidatesButton />
-          <Button
-            size="xs"
-            color="red"
-            variant="light"
-            radius="xs"
-            leftSection={<IconRefresh size={18} />}
-            onClick={handleResetData}
-          >
-            Xóa dữ liệu
-          </Button>
+          <ResetDataButton />
         </Group>
       </Group>
       <Box
