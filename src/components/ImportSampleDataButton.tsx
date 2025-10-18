@@ -11,23 +11,28 @@ export function ImportSampleDataButton() {
     const candidates: Candidate[] = [
       {
         id: "1",
-        name: "Nguyen Van A",
+        name: "Nguyễn Văn A",
         votes: 0,
       },
       {
         id: "2",
-        name: "Nguyen Van B",
+        name: "Nguyễn Văn B",
         votes: 3,
       },
       {
         id: "3",
-        name: "Nguyen Van C",
+        name: "Nguyễn Văn C",
         votes: 20,
       },
       {
         id: "4",
-        name: "Nguyen Van D",
+        name: "Nguyễn Văn D",
         votes: 0,
+      },
+      {
+        id: "4",
+        name: "Nguyễn Văn E",
+        votes: 12,
       },
     ]
 
