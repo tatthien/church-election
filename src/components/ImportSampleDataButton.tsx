@@ -30,7 +30,7 @@ export function ImportSampleDataButton() {
         votes: 0,
       },
       {
-        id: "4",
+        id: "5",
         name: "Nguyễn Văn E",
         votes: 12,
       },
