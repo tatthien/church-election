@@ -1,6 +1,14 @@
 import { useCandidateStore } from "@/stores";
 import { CandidateItem } from "./CandidateItem";
-import { Box, ActionIcon, Group, Text, Tooltip, Stack } from "@mantine/core";
+import {
+  Box,
+  ActionIcon,
+  Group,
+  Text,
+  Tooltip,
+  Stack,
+  Select,
+} from "@mantine/core";
 import {
   IconAlignLeft,
   IconAlignCenter,
@@ -9,8 +17,9 @@ import {
   IconList,
   IconUsers,
 } from "@tabler/icons-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import classes from "./Candidate.module.css";
+import { SortOrder, sortCandidates } from "./sortCandidates";
 import { clsx } from "clsx";
 import { CopyCandidatesButton } from "../CopyCandidatesButton";
 import { ImportSampleDataButton } from "../ImportSampleDataButton";
@@ -22,13 +31,18 @@ export function CandidateList() {
     "left",
   );
   const [layout, setLayout] = useState<"list" | "column">("list");
+  const [sortOrder, setSortOrder] = useState<SortOrder>("none");
   const candidates = useCandidateStore((state) => state.candidates);
+  const sortedCandidates = useMemo(
+    () => sortCandidates(candidates, sortOrder),
+    [candidates, sortOrder],
+  );
 
   if (!candidates.length) {
     return (
       <Stack align="center" gap={24} my={24}>
         <Stack align="center" gap={0}>
-          <Text c='blue.3' span>
+          <Text c="blue.3" span>
             <IconUsers size={60} strokeWidth={1} color="currentColor" />
           </Text>
           <Text ta="center" c="gray.7">
@@ -41,7 +55,7 @@ export function CandidateList() {
           <PasteCandidatesButton />
         </Group>
       </Stack>
-    )
+    );
   }
 
   return (
@@ -102,6 +116,26 @@ export function CandidateList() {
               </ActionIcon>
             </Tooltip>
           </ActionIcon.Group>
+          <Group gap={6}>
+            <Text component="label" fz="sm" htmlFor="sorting-by-name">
+              Sắp theo tên
+            </Text>
+            <Select
+              id="sorting-by-name"
+              size="xs"
+              radius="xs"
+              w={140}
+              allowDeselect={false}
+              aria-label="Sắp xếp theo tên"
+              data={[
+                { value: "none", label: "Không sắp xếp" },
+                { value: "asc", label: "A → Z" },
+                { value: "desc", label: "Z → A" },
+              ]}
+              value={sortOrder}
+              onChange={(value) => setSortOrder((value as SortOrder) ?? "none")}
+            />
+          </Group>
         </Group>
         <Group gap={6}>
           <CopyCandidatesButton />
@@ -115,9 +149,9 @@ export function CandidateList() {
           classes.list,
           layout === "list" ? classes.layoutList : classes.layoutColumn,
         ])}
-        data-test='candidate-list'
+        data-test="candidate-list"
       >
-        {candidates.map((candidate, index) => (
+        {sortedCandidates.map((candidate, index) => (
           <CandidateItem
             key={candidate.id}
             item={candidate}
